@@ -1,0 +1,31 @@
+.header--main{
+    color: #fbd007;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 1px 1px 5px #fbce07a4;
+    background-color: black;
+    padding-bottom: 20px ;
+    padding-top: 10px ;
+}
+
+.header--logo{
+    height: 50px;
+    padding: 10px 15px;
+}
+
+.header--title{
+    padding: 20px 0px;
+    margin-left: 0px !important;
+}
+
+.header--button--carrito{
+    color: #fbd007;
+    padding: 15px;
+    text-align: right;
+}
+
+.MuiBottomNavigation-root, .MuiBottomNavigationAction-root{
+    background: rgb(201,165,8);
+    background: linear-gradient(180deg, rgb(254, 208, 3) 21%, rgb(174, 147, 27) 99%);
+
+    color: black !important; 
+}
