@@ -1,11 +1,10 @@
 import React from 'react';
 import './Navbar.css';
+import CartWidget from './CartWidget';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import logo from '../../media/img/logo_electromundo.png'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
@@ -16,7 +15,7 @@ import TvIcon from '@mui/icons-material/Tv';
 import SpeakerIcon from '@mui/icons-material/Speaker';
 
 const Navbar = () => {
-    const [value, setValue] = React.useState('computadoras');
+    const [value, setValue] = React.useState('');
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -24,6 +23,9 @@ const Navbar = () => {
 
     return (
         <header className='header--main'>
+            
+            {/* Seccion superior del navbar */}
+
             <Box sx={{ bgcolor: 'black', width: '100%'}}>
                 <Container maxWidth="lg">
                     <Grid container>
@@ -37,16 +39,17 @@ const Navbar = () => {
                             {/* Espacio en blanco del navbar */}
                         </Grid>
                         <Grid textAlign="right" xs={2}>
-                        <IconButton color="warning" size="large">
-                            <ShoppingCartIcon className='header--button--carrito'/>
-                        </IconButton>
+                            <CartWidget/>
                         </Grid>
                     </Grid>
                 </Container>
             </Box>
+
+             {/* Seccion inferior del navbar */}
+
             <Box sx={{ background: 'black'}}>
                 <Container className="header--menubar" maxWidth="lg">
-                    <BottomNavigation value={value} onChange={handleChange}>
+                    <BottomNavigation showLabels value={value} onChange={handleChange}>
                     <BottomNavigationAction
                         label="Computadoras"
                         value="computadoras"
