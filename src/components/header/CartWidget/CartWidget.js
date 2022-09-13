@@ -1,5 +1,5 @@
 import React from 'react';
-import './Navbar.css';
+import '../Navbar/Navbar.css';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 

@@ -26,6 +26,10 @@
     text-align: right;
 }
 
+.box{
+    width: '100%';
+}
+
 .MuiBottomNavigation-root, .MuiBottomNavigationAction-root{
     background: linear-gradient(180deg, rgb(254, 208, 3) 21%, rgb(174, 147, 27) 99%);
     font-family: 'Inter', sans-serif;

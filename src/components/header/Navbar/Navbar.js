@@ -1,10 +1,10 @@
 import React from 'react';
 import './Navbar.css';
-import CartWidget from './CartWidget';
+import CartWidget from '../CartWidget/CartWidget';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import logo from '../../media/img/logo_electromundo.png'
+import logo from '../../../media/img/logo_electromundo.png'
 import Stack from '@mui/material/Stack';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
@@ -26,7 +26,7 @@ const Navbar = () => {
             
             {/* Seccion superior del navbar */}
 
-            <Box sx={{ bgcolor: 'black', width: '100%'}}>
+            <Box className='box'>
                 <Container maxWidth="lg">
                     <Grid container>
                         <Grid xs={2}>

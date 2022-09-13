@@ -1,7 +1,9 @@
-import cover from '../../media/img/cover_sale.jpg';
-import hp from './notebook/hp.jpeg';
-import lenovo from './notebook/lenovo.jpeg';
-import acer from './notebook/acer.jpeg';
+
+import cover from '../../../media/img/cover_sale.jpg';
+import hp from '../../../media/img/notebook/hp.jpeg';
+import lenovo from '../../../media/img/notebook/lenovo.jpeg';
+import acer from '../../../media/img/notebook/acer.jpeg';
+
 import React from 'react';
 import './ItemListContainer.css';
 import Container from '@mui/material/Container';
@@ -9,8 +11,37 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import ComputerIcon from '@mui/icons-material/Computer';
 import Grid from '@mui/material/Grid';
+import ItemCount from '../ItemCount/ItemCount';
 
 const ItemListContainer = ({greeting}) => {
+
+    const Productos = [
+        {
+            'id': 1000,
+            'stock': 5 
+        },
+        {
+            'id': 1001,
+            'stock': 7 
+        },
+        {
+            'id': 1002,
+            'stock': 3
+        }
+    ]
+
+    // Valor inicial del producto
+    const producto = 0
+
+    const contenidoCarrito = (producto) =>{
+        if(producto == 1){
+            console.log("Se añadio un producto al carrito")
+        }
+        else{
+            console.log("Se añadieron "+producto+" productos al carrito")
+        }
+    }
+
     return (
       <div className='main'>
         <h1 className='main--titulo'>{greeting}</h1>
@@ -33,6 +64,7 @@ const ItemListContainer = ({greeting}) => {
                             <h2 className='item--precio'>
                                 $ 449.999
                             </h2>
+                            <ItemCount idProducto={Productos[0].id} stock={Productos[0].stock} initial={1} onAdd={contenidoCarrito}/>
                         </Grid>
                         <Grid item xs={4}>
                             <img src={acer} className='item--img' alt="acer"></img>
@@ -42,6 +74,7 @@ const ItemListContainer = ({greeting}) => {
                             <h2 className='item--precio'>
                                 $ 319.999
                             </h2>
+                            <ItemCount idProducto={Productos[1].id} stock={Productos[1].stock} initial={1} onAdd={contenidoCarrito}/>
                         </Grid>
                         <Grid item xs={4}>
                             <img src={hp} className='item--img' alt="hp"></img>
@@ -51,6 +84,7 @@ const ItemListContainer = ({greeting}) => {
                             <h2 className='item--precio'>
                                 $ 359.999
                             </h2>
+                            <ItemCount idProducto={Productos[2].id} stock={Productos[2].stock} initial={1} onAdd={contenidoCarrito}/>
                         </Grid>
                     </Grid>
                 </CardContent>

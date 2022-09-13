@@ -1,7 +1,6 @@
-import cover from './media/img/cover_sale.jpg';
 import './App.css';
-import Navbar from './components/header/Navbar';
-import ItemListContainer from './components/item/ItemListContainer';
+import Navbar from './components/header/Navbar/Navbar';
+import ItemListContainer from './components/item/ItemListContainer/ItemListContainer';
 
 
 const App = () => {
