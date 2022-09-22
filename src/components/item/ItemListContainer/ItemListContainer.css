@@ -3,7 +3,7 @@
 }
 
 .main--cover{
-    width: 110%;
+    width: 100%;
     box-shadow: 0px 0px 20px 5px black;
 }
 
@@ -75,4 +75,3 @@
     color: #fbd007;
     border-bottom: solid 3px #bc9a03;
 }
-

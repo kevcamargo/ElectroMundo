@@ -1,5 +1,5 @@
 
-import cover from '../../../media/img/cover_sale.jpg';
+import cover from '../../../media/img/cover_sale3.jpg';
 import hp from '../../../media/img/notebook/hp.jpeg';
 import lenovo from '../../../media/img/notebook/lenovo.jpeg';
 import acer from '../../../media/img/notebook/acer.jpeg';
@@ -13,11 +13,10 @@ import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import ComputerIcon from '@mui/icons-material/Computer';
-import Grid from '@mui/material/Grid';
-import Item from '../Item/Item';
 import ItemList from '../ItemList/ItemList';
 
 const ItemListContainer = ({greeting}) => {
+
     const Productos = [
         {
             'id': 100,
@@ -107,8 +106,10 @@ const ItemListContainer = ({greeting}) => {
     return (
         
         <div className='main'>
+
             <h1 className='main--titulo'>{greeting}</h1>
             <img src={cover} className='main--cover' alt="cover"></img>
+
             <Container className='main--container'>
                 <Card className='main--card'>
                     <CardContent className='main--cardcontent'>
@@ -122,6 +123,7 @@ const ItemListContainer = ({greeting}) => {
                     </CardContent>
                 </Card>
             </Container>
+
         </div>
         
     )

@@ -53,7 +53,6 @@ const ItemCount = ({idProducto, stock, initial, onAdd}) => {
                 </Grid>
             </Grid>
         </Grid>
-        
         </>
     )
 }
