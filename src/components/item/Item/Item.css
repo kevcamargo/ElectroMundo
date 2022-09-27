@@ -1,6 +1,6 @@
-
 .item--img{
-    width: 60%;
+    width: 180px;
+    height: 200px;
     border-radius: 10px;
     outline: solid 5px rgb(0, 0, 0);
     margin: 15px 0px;
@@ -14,8 +14,14 @@
 .item--titulo{
     color: #fbd007;
     font-family: 'Inter', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     text-transform: uppercase;
+    height: 40px;
+    transition: 0.2s color;
+}
+
+.item--titulo:hover{
+    color: #fbce07d0;
 }
 
 .item--precio{
@@ -73,4 +79,9 @@
 
 .negrita{
     font-weight: bold !important;
+}
+
+a{
+    text-decoration-color: #fbd007 ;
+    text-decoration: dotted;
 }

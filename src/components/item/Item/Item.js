@@ -5,11 +5,11 @@ import ItemCount from '../ItemCount/ItemCount';
 import IconButton from '@mui/material/IconButton';
 import MemoryIcon from '@mui/icons-material/Memory';
 import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { Link } from 'react-router-dom';
 
 
 const Item = ({producto}) => {
@@ -45,17 +45,23 @@ const Item = ({producto}) => {
                     <span id={spanMostrar} className='span'>Mostrar Detalles</span>
                     <span id={spanOcultar} className='span esconder'>Ocultar Detalles</span>
                 </IconButton>
-                <div id={verDetalle} className="esconder">
-                    <h6 className='item--stock'>Stock disponible: {producto.stock}</h6>
+                <Link to={"/producto/"+producto.id}>
                     <h4 className='item--titulo'>
                         {producto.name}
                     </h4>
-                    <Grid container spacing={0} sx={{paddingTop: 0}}>
+                </Link>
+                <h2 className='item--precio'>
+                    {producto.price}
+                </h2>
+
+                <div id={verDetalle} className="esconder">
+                    <h6 className='item--stock'>Stock disponible: {producto.stock}</h6>
+                    <Grid container spacing={0} sx={{paddingTop: 2}}>
                         <Grid item xs={2}></Grid>
                         <Grid item xs={2}>
                             <MemoryIcon></MemoryIcon>
                         </Grid>
-                        <Grid item xs={4} sx={{textAlign: 'left'}}>
+                        <Grid item xs={4} sx={{textAlign: 'center'}}>
                             Especificaciones
                         </Grid>
                         <Grid item xs={2}>
@@ -68,7 +74,16 @@ const Item = ({producto}) => {
                         <TableContainer>
                             <Table>
                                 <TableHead>
-                                    <TableRow>
+                                    {
+                                        producto.specs.map(
+                                            (x) => 
+                                            <TableRow>
+                                                <TableCell className='specs--cell negrita'>{x.tituloDetalle}</TableCell>
+                                                <TableCell className='specs--cell' align='right'>{x.detalle}</TableCell>
+                                            </TableRow>
+                                        )
+                                    }
+                                   {/*  <TableRow>
                                         <TableCell className='specs--cell negrita'>Procesador</TableCell>
                                         <TableCell className='specs--cell' align='right'>{producto.specs.procesador}</TableCell>
                                     </TableRow>
@@ -79,17 +94,14 @@ const Item = ({producto}) => {
                                     <TableRow>
                                         <TableCell className='specs--cell negrita'>Placa de Video</TableCell>
                                         <TableCell className='specs--cell' align='right'>{producto.specs.video}</TableCell>
-                                    </TableRow>
+                                    </TableRow> */}
                                 </TableHead>
                             </Table>
                         </TableContainer>
                     </Grid>
                     
                 </div>
-                    
-                <h2 className='item--precio'>
-                    {producto.price}
-                </h2>
+
                 <ItemCount idProducto={producto.id} stock={producto.stock} initial={1} onAdd={contenidoCarrito}/>
 
             </Grid>

@@ -4,6 +4,7 @@ import Item from '../Item/Item';
 import './ItemList.css';
 
 // Modelo de promesa
+
 /* const promesa = new Promise((resolver,rechazar) => {
     rechazar(true)
 });
@@ -31,7 +32,8 @@ const ItemList = ({array_productos}) => {
     useEffect(() => {   
         const e_loader = document.getElementById("loader")
         const e_gridContainer = document.getElementById("gridContainer")
-
+        
+        e_loader.classList.remove("esconder")
         e_gridContainer.classList.add("esconder")
 
         setTimeout(()=>{
@@ -46,7 +48,7 @@ const ItemList = ({array_productos}) => {
             }).catch(() => {console.log("Error al cargar datos")})
 
         },2000)
-    },[])
+    },[array_productos])
     
 
     return(

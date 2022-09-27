@@ -4,31 +4,31 @@ import lenovo from '../../../media/img/notebook/lenovo3.jpeg';
 import lenovo2 from '../../../media/img/notebook/lenovo2.png';
 import './ItemDetailContainer.css';
 import ItemDetail from '../ItemDetail/ItemDetail';
+import { useParams } from 'react-router-dom';
+import Productos from '../../../mock';
 
-const producto_lenovo = {
-    'id': 100,
-    'name':  "Notebook Lenovo 16' Ryzen 7 16GB 512GB SSD Legion 5 Pro",
-    'price': "$ 449.999",
-    'image_url': lenovo,
-    'image_url2': lenovo2,
-    'stock': 5,
-    'descripcion': 'Rendimiento épico por dentro y por fuera Procesamiento AMD Ryzen™ y tarjeta gráfica NVIDIA® GeForce RTX™ Perfecta para juegos de alta resolución Primera laptop de 16” del mundo con hasta 165 Hz Tecnología de audio 3D de Nahimic: podrás ver y oír a cualquier enemigo acercándose a ti La retroiluminación del teclado es opcional y puede variar según el modelo; algunos puertos/ranuras también pueden variar o ser opcionales',
-    'procesadorModelo': 'AMD Ryzen 7',
-    'procesadorVelocidad': '4.4GHz', 
-    'memoriaRam': '16 GB',
-    'memoriaSSD': '512 GB',
-    'pantallaPlaca': 'NVIDIA® GeForce® RTX™ 3070',
-    'pantallaTecno': 'IPS 500nits Anti-glare 165Hz',
-    'pantallaPulgada': '16 pulgadas'
-}
 
 const ItemDetailContainer = () => {
 
+    const {idProducto} = useParams()
+
+    const arrayProductoFiltrado = Productos.filter( 
+        (elemento) => {
+            if(elemento.id == idProducto){
+                return elemento
+            }
+        }
+    )
+
     const promesa = new Promise((res,rej)=>{
-        res(producto_lenovo)
+        res(arrayProductoFiltrado[0])
     })
 
-    const [item, setItem] = useState({})
+    // Esta linea la comentamos porque no me funciona productos.caracteristicas en ItemDetail.js 
+    /* const [item, setItem] = useState({}) */
+
+    // Si la defino asi entonces si me funciona. Obviamente si hago esto, el useEffect no tendria sentido. Porque inicialmente le estoy asignado el valor del arrayProductoFiltrado[0]
+    const [item, setItem] = useState(arrayProductoFiltrado[0])
     
     // Efecto para el montaje
     
@@ -66,7 +66,7 @@ const ItemDetailContainer = () => {
         <>  
             <span id="loaderDetail" className="loader"></span>
             <Grid container id="gridContainerDetail" className='esconder'>
-                <ItemDetail producto={item}/>
+                <ItemDetail producto={item} />
             </Grid>
         </>
     )

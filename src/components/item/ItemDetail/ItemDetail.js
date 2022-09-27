@@ -9,7 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import ItemCount from '../ItemCount/ItemCount';
-import './ItemDetail.css'
+import './ItemDetail.css';
 
 
 const ItemDetail = ({producto}) => {
@@ -32,7 +32,7 @@ const ItemDetail = ({producto}) => {
                     {/* Presentacion */}
                     <Box className="container--boxProducto fontPrincipal">
                         <h5 className='container--spanRuta reset'>
-                            Electromundo -&gt; Computadoras -&gt;
+                            Electromundo -&gt; {producto.categoria} -&gt;
                             <b className='container--spanRutaActual'>{producto.name}</b>
                         </h5>
                         <Grid container spacing={0} sx={{paddingTop: 1}}>
@@ -51,9 +51,10 @@ const ItemDetail = ({producto}) => {
                             </Grid>
                         </Grid>
                     </Box>
+
                     {/* Descripcion */}
                     <Box className="container--boxDetalle fontPrincipal">
-                        <h3 className='container--subtitulo'>Descripcion</h3>
+                        <h3 className='container--subtitulo'>Descripción</h3>
                         <Stack justifyContent="center" alignItems="center" spacing={6}>
                             <img src={producto.image_url2} className='container--imagenDetalle' alt="productoDescripcion"></img>
                             <p className='container--textoDetalle'>
@@ -61,27 +62,30 @@ const ItemDetail = ({producto}) => {
                             </p>
                         </Stack>
                     </Box>
+
                     {/* Características Tecnicas */}
                     <Box className="container--boxCaracteristicas">
                         <h3 className='container--subtitulo'>Características Técnicas</h3>
                         <Stack justifyContent="center" alignItems="center" spacing={2}>
-                            <TableContainer>
+
+                            {producto.caracteristicas.map(
+                                (x) => 
+                                <TableContainer>
                                     <Table>
                                         <TableHead>
                                             <TableRow>
-                                                <TableCell className='specs--titulo negrita' width={300} align='center'>Procesador</TableCell>
+                                                <TableCell className='specs--titulo negrita' width={300} align='center'>{x.titulo}</TableCell>
                                                 <TableCell className='specs--cell' align='right'>
                                                     <TableContainer>
                                                             <Table>
                                                                 <TableHead>
-                                                                    <TableRow>
-                                                                        <TableCell className='specs--cell negrita'>Modelo</TableCell>
-                                                                        <TableCell className='specs--cell' align='right'>{producto.procesadorModelo}</TableCell>
-                                                                    </TableRow>
-                                                                    <TableRow>
-                                                                        <TableCell className='specs--cell negrita'>Velocidad</TableCell>
-                                                                        <TableCell className='specs--cell' align='right'>{producto.procesadorVelocidad}</TableCell>
-                                                                    </TableRow>
+                                                                    {x.data.map(
+                                                                        (y) => 
+                                                                        <TableRow>
+                                                                            <TableCell className='specs--cell negrita'>{y.subtitulo}</TableCell>
+                                                                            <TableCell className='specs--cell' align='right'>{y.detalle}</TableCell>
+                                                                        </TableRow>
+                                                                    )}
                                                                 </TableHead>
                                                             </Table>
                                                     </TableContainer>
@@ -89,63 +93,12 @@ const ItemDetail = ({producto}) => {
                                             </TableRow>
                                         </TableHead>
                                     </Table>
-                            </TableContainer>
-                            <TableContainer>
-                                    <Table>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell className='specs--titulo negrita' width={300} align='center'>Memoria y Almacenamiento</TableCell>
-                                                <TableCell className='specs--cell' align='right'>
-                                                    <TableContainer>
-                                                            <Table>
-                                                                <TableHead>
-                                                                    <TableRow>
-                                                                        <TableCell className='specs--cell negrita'>Disco SSD</TableCell>
-                                                                        <TableCell className='specs--cell' align='right'>{producto.memoriaSSD}</TableCell>
-                                                                    </TableRow>
-                                                                    <TableRow>
-                                                                        <TableCell className='specs--cell negrita'>Memoria RAM</TableCell>
-                                                                        <TableCell align='right'>{producto.memoriaRam}</TableCell>
-                                                                    </TableRow>
-                                                                </TableHead>
-                                                            </Table>
-                                                    </TableContainer>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                    </Table>
-                            </TableContainer>
-                            <TableContainer>
-                                    <Table>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell className='specs--titulo negrita' width={300} align='center'>Pantalla y Video</TableCell>
-                                                <TableCell className='specs--cell' align='right'>
-                                                    <TableContainer>
-                                                            <Table>
-                                                                <TableHead>
-                                                                    <TableRow>
-                                                                        <TableCell className='specs--cell negrita'>Tamaño de pantalla</TableCell>
-                                                                        <TableCell className='specs--cell' align='right'>{producto.pantallaPulgada}</TableCell>
-                                                                    </TableRow>
-                                                                    <TableRow>
-                                                                        <TableCell className='specs--cell negrita'>Tecnología de pantalla</TableCell>
-                                                                        <TableCell className='specs--cell' align='right'>{producto.pantallaTecno}</TableCell>
-                                                                    </TableRow>
-                                                                    <TableRow>
-                                                                        <TableCell className='specs--cell negrita'>Placa de Video</TableCell>
-                                                                        <TableCell align='right'>{producto.pantallaPlaca}</TableCell>
-                                                                    </TableRow>
-                                                                </TableHead>
-                                                            </Table>
-                                                    </TableContainer>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                    </Table>
-                            </TableContainer>
+                                </TableContainer>
+                            )}
+                            
                         </Stack>
                     </Box>
+                    
                 </div>
                 
             </Container>

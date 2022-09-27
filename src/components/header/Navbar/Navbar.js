@@ -13,8 +13,43 @@ import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import TvIcon from '@mui/icons-material/Tv';
 import SpeakerIcon from '@mui/icons-material/Speaker';
+import {Link, NavLink} from 'react-router-dom';
+
+const categorias = [
+    {
+        id: 0,
+        nombre: 'Computadoras',
+        ruta: '/categorias/computadoras',
+        icono: <ComputerIcon />
+    },
+    {
+        id: 1,
+        nombre: 'Celulares',
+        ruta: '/categorias/celulares',
+        icono: <SmartphoneIcon />
+    },
+    {
+        id: 2,
+        nombre: 'Consolas',
+        ruta: '/categorias/consolas',
+        icono: <SportsEsportsIcon />
+    },
+    {
+        id: 3,
+        nombre: 'Televisores',
+        ruta: '/categorias/televisores',
+        icono: <TvIcon />
+    },
+    {
+        id: 4,
+        nombre: 'Audio',
+        ruta: '/categorias/audio',
+        icono: <SpeakerIcon />
+    }
+]
 
 const Navbar = () => {
+
     const [value, setValue] = React.useState('');
 
     const handleChange = (event, newValue) => {
@@ -31,7 +66,7 @@ const Navbar = () => {
                     <Grid container>
                         <Grid xs={2}>
                             <Stack direction="row" spacing={2}>
-                                <img src={logo} className="header--logo" alt="logo" />
+                                <Link to="/"><img src={logo} className="header--logo" alt="logo" value={''} onClick={handleChange} /></Link>
                                 <h2 className="header--title">Electromundo</h2>
                             </Stack>
                         </Grid>
@@ -39,7 +74,7 @@ const Navbar = () => {
                             {/* Espacio en blanco del navbar */}
                         </Grid>
                         <Grid textAlign="right" xs={2}>
-                            <CartWidget/>
+                            <Link to="/cart"><CartWidget/></Link>
                         </Grid>
                     </Grid>
                 </Container>
@@ -50,31 +85,13 @@ const Navbar = () => {
             <Box sx={{ background: 'black'}}>
                 <Container className="header--menubar" maxWidth="lg">
                     <BottomNavigation showLabels value={value} onChange={handleChange}>
-                    <BottomNavigationAction
-                        label="Computadoras"
-                        value="computadoras"
-                        icon={<ComputerIcon />}
-                    />
-                    <BottomNavigationAction
-                        label="Celulares"
-                        value="celulares"
-                        icon={<SmartphoneIcon />}
-                    />
-                    <BottomNavigationAction
-                        label="Consolas"
-                        value="consolas"
-                        icon={<SportsEsportsIcon />}
-                    />
-                    <BottomNavigationAction
-                        label="Televisores"
-                        value="televisores"
-                        icon={<TvIcon />}
-                    />
-                    <BottomNavigationAction
-                        label="Audio"
-                        value="audio"
-                        icon={<SpeakerIcon />}
-                    />
+                        {
+                            categorias.map((categoria) => {
+                                return(
+                                    <BottomNavigationAction component={Link} to={categoria.ruta} label={categoria.nombre} value={categoria.id} icon={categoria.icono} />
+                                )
+                            })
+                        }
                     </BottomNavigation>
                 </Container>
             </Box>
