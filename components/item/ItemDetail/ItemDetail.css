@@ -1,0 +1,149 @@
+.fontPrincipal{
+    font-family: 'Inter', sans-serif !important;
+    color: #fbd007;
+}
+
+.container--box{
+    box-shadow: 0px 0px 15px 10px rgba(20, 20, 19, 0.831);
+    border-top: 3px solid #b1910b;
+    border-radius: 5px;
+}
+
+.container--boxProducto{
+    height: 60vh;
+}
+
+.container--boxDetalle{
+    height: 75vh;
+    padding: 15px 30px !important;
+}
+
+.container--boxCaracteristicas{
+    padding: 20px 30px !important;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.container--spanRuta{
+    text-align: left;
+    padding: 15px 20px !important;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.container--spanRutaActual{
+    margin-left: 5px;
+}
+
+.container--tituloProducto{
+    text-align: left;
+    padding-top: 5px !important;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-shadow: 0px 0px 5px #fbce07a4;
+}
+
+.container--subtitulo{
+    text-align: left;
+    font-weight: 600;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    border-bottom: 1px solid #fbd007;
+}
+
+.container--grid--imagen{
+    background-color: white;
+    margin-left: 50px !important;
+}
+
+.container--imagen{
+    height: 400px;
+}
+
+.container--imagenDetalle{
+    padding-top: 10px;
+    height: 400px;
+}
+
+.container--textoDetalle{
+    font-weight: 300;
+    padding: 0px 50px;
+}
+
+.container--precio{
+    color: #fbd007;
+    font-family: 'Inter', sans-serif;
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.container--stock{
+    color: #fbd007;
+    font-family: 'Inter', sans-serif;
+    font-weight: bolder;
+    text-transform: uppercase;
+    background-color: rgba(56, 56, 1, 0.583);
+    margin: 10px 60px;
+    padding: 5px 0px;
+    border-radius: 10px;
+}
+
+.reset{
+    padding: 0;
+    margin: 0;
+}
+
+.MuiTableContainer-root{
+    background-color: #fbce07ca;
+    border-radius: 5px;
+}
+
+.MuiTableRow-root{
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.446);
+}
+
+.specs--cell{
+    font-size: 0.8rem !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.specs--titulo{
+    font-size: 1rem !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.negrita{
+    font-weight: bold !important;
+}
+
+.sombraBox{
+    box-shadow: 0px 0px 15px 10px rgba(20, 20, 19, 0.831);
+}
+
+.boton_carrito{
+    color: black !important;
+    background-color: #fbd007 !important;
+    font-weight: 600 !important;
+    padding: 5px 25px  !important;
+}
+
+.container--alert{
+    color: #fbd007 !important;
+    border-color: #fbd007 !important;
+}
+
+.MuiAlert-message{
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    margin-top: 3px;
+}
+a{
+    color: #fbd007;
+}
+
+a:hover{
+    font-weight: 500;
+}

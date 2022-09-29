@@ -1,0 +1,87 @@
+.item--img{
+    width: 180px;
+    height: 200px;
+    border-radius: 10px;
+    outline: solid 5px rgb(0, 0, 0);
+    margin: 15px 0px;
+    transition: 0.2s box-shadow;
+}
+
+.item--img:hover{
+    box-shadow: 0px 0px 20px 1px rgb(247, 255, 2) !important;
+}
+
+.item--titulo{
+    color: #fbd007;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    height: 40px;
+    transition: 0.2s color;
+}
+
+.item--titulo:hover{
+    color: #fbce07d0;
+}
+
+.item--precio{
+    color: #fbd007;
+    font-family: 'Inter', sans-serif;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.item--stock{
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    margin-top: -0.2rem;
+    background: #ffd61ed0;
+    color: rgba(0, 0, 0, 0.814) !important;
+    margin: 5px;
+    text-align: center;
+    padding: 5px;
+    margin: 0px 7rem;
+    border-radius: 10px;
+}
+
+.esconder{
+    display: none;
+}
+
+.span{
+    text-transform: uppercase;
+    position: absolute;
+    font-size: 0.8rem;
+    bottom: 23px;
+    color: black;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    background-color: #fbd007;
+    width: 180px;
+    padding: 5px 0px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.MuiTableContainer-root{
+    background-color: #fbd007;
+    border-radius: 5px;
+}
+
+.MuiTableRow-root{
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.446);
+}
+
+.specs--cell{
+    font-size: 0.8rem !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.negrita{
+    font-weight: bold !important;
+}
+
+a{
+    text-decoration-color: #fbd007 ;
+    text-decoration: dotted;
+}
