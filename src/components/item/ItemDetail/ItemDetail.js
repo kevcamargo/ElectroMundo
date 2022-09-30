@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -9,30 +9,75 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import ItemCount from '../ItemCount/ItemCount';
+import Button from '@mui/material/Button';
 import './ItemDetail.css';
+import DoneIcon from '@mui/icons-material/Done';
+import { Link } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
+import { isElementOfType } from 'react-dom/test-utils';
 
 
 const ItemDetail = ({producto}) => {
 
-    const contenidoCarrito = (x) =>{
-        if(x == 1){
-            console.log("Se añadio un producto al carrito")
+    const categorias = [
+        {
+            id: 0,
+            nombre: 'computadoras',
+            ruta: '/categorias/computadoras'
+        },
+        {
+            id: 1,
+            nombre: 'celulares',
+            ruta: '/categorias/celulares'
+        },
+        {
+            id: 2,
+            nombre: 'consolas',
+            ruta: '/categorias/consolas'
+        },
+        {
+            id: 3,
+            nombre: 'televisores',
+            ruta: '/categorias/televisores'
+        },
+        {
+            id: 4,
+            nombre: 'audio',
+            ruta: '/categorias/audio'
         }
-        else{
-            console.log("Se añadieron "+x+" productos al carrito")
-        }
+    ]
+
+    const obtenerRutaCategoria = (categoria) => {
+        const arrayCategoriasFiltrado = categorias
+            .filter( (x) => {
+                if(x.nombre === categoria){
+                    return(x)
+            }})
+        return arrayCategoriasFiltrado[0].ruta
     }
+
+    const [mostrarFinalizarCompra, setMostrarFinalizarCompra] = useState(false)
+    const [alertMensaje, setAlertMensaje] = useState("")
+
+    const handlerClick_FinalizarCompra = (x) => {
+        setMostrarFinalizarCompra(true)
+        setAlertMensaje(contenidoCarrito(x)) 
+    }
+
+    const contenidoCarrito = (x) => x==1 ? ("Se añadio un producto al carrito") : ("Se añadieron "+x+" productos al carrito")
 
     return(
         <>
-            
+        
             <Container>
-                
                 <div className='container--box'>
                     {/* Presentacion */}
                     <Box className="container--boxProducto fontPrincipal">
                         <h5 className='container--spanRuta reset'>
-                            Electromundo -&gt; {producto.categoria} -&gt;
+                            <Link to="/">Electromundo </Link> 
+                            -&gt;
+                            <Link to={obtenerRutaCategoria(producto.categoria)}> {producto.categoria} </Link>
+                            -&gt;
                             <b className='container--spanRutaActual'>{producto.name}</b>
                         </h5>
                         <Grid container spacing={0} sx={{paddingTop: 1}}>
@@ -43,10 +88,20 @@ const ItemDetail = ({producto}) => {
                                 <h3 className='container--tituloProducto reset'>{producto.name}</h3>
                                 <h2 className='container--precio'>{producto.price}</h2>
                                 <Container sx={{paddingTop: 5}}>
-                                    <ItemCount idProducto={producto.id} stock={producto.stock} initial={1} onAdd={contenidoCarrito} sx={{padding: 2}}/>
-                                    <h5 className='container--stock'>
-                                        Stock disponible :  {producto.stock} 
-                                    </h5>
+                                    {
+                                        mostrarFinalizarCompra ?
+                                        <Grid container xs={12}>
+                                            <Grid item xs={12}>
+                                                <Alert sx={{marginBottom: 2}} className="container--alert" severity="success" color="warning" variant="outlined">{alertMensaje}</Alert>
+                                                <Button component={Link} to={"/cart"} variant="contained" className='boton_carrito'>
+                                                    Finalizar compra
+                                                    <DoneIcon sx={{marginLeft: 1}}/> 
+                                                </Button>
+                                            </Grid>
+                                        </Grid>
+                                        :
+                                        <ItemCount idProducto={producto.id} stock={producto.stock} initial={1} onAdd={handlerClick_FinalizarCompra} sx={{padding: 2}}/>
+                                    }
                                 </Container>
                             </Grid>
                         </Grid>

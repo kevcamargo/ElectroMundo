@@ -23,13 +23,15 @@ const ItemCount = ({idProducto, stock, initial, onAdd}) => {
         }
     }
 
-    const agregarProductoAlCarrito = () => {
+    const handler_agregarProductoAlCarrito = () => {
         setContador(initial)
         onAdd(contador)
+        //onAdd(contador)
     }
 
     return(
         <>
+        
         <Grid container className='grid'>
             <Grid item xs={3}>
                 <Button variant="text" className='boton' onClick={quitarProducto}>
@@ -45,14 +47,17 @@ const ItemCount = ({idProducto, stock, initial, onAdd}) => {
                 </Button>
             </Grid>
             <Grid container sx={{paddingTop:2}}>
-                <Grid item xs={12}>
-                    <Button variant="contained" className='boton_carrito' onClick={agregarProductoAlCarrito}>
+                 <Grid item xs={12}>
+                    <Button variant="contained" className='boton_carrito' onClick={handler_agregarProductoAlCarrito}>
                         Agregar al Carrito
                         <ShoppingCartIcon sx={{marginLeft: 1}}/> 
                     </Button>
                 </Grid>
             </Grid>
         </Grid>
+        <h5 className='container--stock'>
+            Stock disponible :  {stock} 
+        </h5>
         </>
     )
 }

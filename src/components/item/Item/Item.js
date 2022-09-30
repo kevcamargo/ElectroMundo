@@ -83,18 +83,6 @@ const Item = ({producto}) => {
                                             </TableRow>
                                         )
                                     }
-                                   {/*  <TableRow>
-                                        <TableCell className='specs--cell negrita'>Procesador</TableCell>
-                                        <TableCell className='specs--cell' align='right'>{producto.specs.procesador}</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell className='specs--cell negrita'>Memoria RAM </TableCell>
-                                        <TableCell align='right'>{producto.specs.ram}</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell className='specs--cell negrita'>Placa de Video</TableCell>
-                                        <TableCell className='specs--cell' align='right'>{producto.specs.video}</TableCell>
-                                    </TableRow> */}
                                 </TableHead>
                             </Table>
                         </TableContainer>
@@ -102,7 +90,7 @@ const Item = ({producto}) => {
                     
                 </div>
 
-                <ItemCount idProducto={producto.id} stock={producto.stock} initial={1} onAdd={contenidoCarrito}/>
+                {/* <ItemCount idProducto={producto.id} stock={producto.stock} initial={1} onAdd={contenidoCarrito}/> */}
 
             </Grid>
         </>

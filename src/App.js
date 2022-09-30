@@ -18,9 +18,6 @@ const App = () => {
           <Route path="/cart" element={<CartView />} />
         </Routes>
 
-        {/* <ItemListContainer greeting={"¡ Ofertas por tiempo limitado !"}/>
-        <ItemDetailContainer/> */}
-
       </BrowserRouter>
     </div>
   )

@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import StarIcon from '@mui/icons-material/Star';
-import cover from '../../../media/img/cover_sale3.jpg';
+import cover from '../../../media/img/cover_sale.jpg';
 import ItemList from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
 import Productos from '../../../mock';
@@ -69,6 +69,8 @@ const ItemListContainer = ({greeting}) => {
                     <CardContent className='main--cardcontentitem' sx={{borderColor: 'transparent'}}>
                         <ItemList array_productos={arrayProductosFiltrado}></ItemList>
                     </CardContent>
+
+
                 </Card>
             </Container>
 

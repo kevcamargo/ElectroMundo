@@ -13,7 +13,7 @@ import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import TvIcon from '@mui/icons-material/Tv';
 import SpeakerIcon from '@mui/icons-material/Speaker';
-import {Link, NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const categorias = [
     {
