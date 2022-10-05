@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -14,63 +14,47 @@ import './ItemDetail.css';
 import DoneIcon from '@mui/icons-material/Done';
 import { Link } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
-import { isElementOfType } from 'react-dom/test-utils';
-
+import Categorias from '../../../mock/Categorias';
+import Productos from '../../../mock/Productos';
+import CartProvider, { CartContext} from '../../../context/CartContext';
 
 const ItemDetail = ({producto}) => {
 
-    const categorias = [
-        {
-            id: 0,
-            nombre: 'computadoras',
-            ruta: '/categorias/computadoras'
-        },
-        {
-            id: 1,
-            nombre: 'celulares',
-            ruta: '/categorias/celulares'
-        },
-        {
-            id: 2,
-            nombre: 'consolas',
-            ruta: '/categorias/consolas'
-        },
-        {
-            id: 3,
-            nombre: 'televisores',
-            ruta: '/categorias/televisores'
-        },
-        {
-            id: 4,
-            nombre: 'audio',
-            ruta: '/categorias/audio'
-        }
-    ]
+    /* const arrayNombre = [{'nombre': 'pepe'},{'nombre':'pollo'}]
+    const arrayAñadido = [...arrayNombre,{'nombre':'pipo'}]
+    console.log(arrayAñadido)
+    console.log(arrayNombre) */
+    
 
     const obtenerRutaCategoria = (categoria) => {
-        const arrayCategoriasFiltrado = categorias
+        const arrayCategoriasFiltrado = Categorias
             .filter( (x) => {
                 if(x.nombre === categoria){
                     return(x)
-            }})
+                }
+            })
         return arrayCategoriasFiltrado[0].ruta
     }
 
     const [mostrarFinalizarCompra, setMostrarFinalizarCompra] = useState(false)
     const [alertMensaje, setAlertMensaje] = useState("")
+    const {addItem} = useContext(CartContext)
 
-    const handlerClick_FinalizarCompra = (x) => {
+    const handlerClick_FinalizarCompra = (cantidadProducto, idProducto) => {
         setMostrarFinalizarCompra(true)
-        setAlertMensaje(contenidoCarrito(x)) 
+        setAlertMensaje(mensajeProductoAñadido(cantidadProducto))
+        const productoFiltrado = Productos.find( (x) => x.id==idProducto)
+        addItem(productoFiltrado, cantidadProducto)
     }
-
-    const contenidoCarrito = (x) => x==1 ? ("Se añadio un producto al carrito") : ("Se añadieron "+x+" productos al carrito")
+    
+    const mensajeProductoAñadido = (x) => x==1 ?  ("Se añadio un producto al carrito") : ("Se añadieron "+x+" productos al carrito");
 
     return(
         <>
-        
             <Container>
+
                 <div className='container--box'>
+
                     {/* Presentacion */}
                     <Box className="container--boxProducto fontPrincipal">
                         <h5 className='container--spanRuta reset'>
@@ -155,7 +139,7 @@ const ItemDetail = ({producto}) => {
                     </Box>
                     
                 </div>
-                
+            
             </Container>
         </>
     )

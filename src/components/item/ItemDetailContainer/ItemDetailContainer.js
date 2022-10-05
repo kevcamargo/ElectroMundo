@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import './ItemDetailContainer.css';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
-import Productos from '../../../mock';
+import Productos from '../../../mock/Productos';
 
 
 const ItemDetailContainer = () => {

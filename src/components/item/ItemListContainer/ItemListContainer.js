@@ -8,7 +8,7 @@ import StarIcon from '@mui/icons-material/Star';
 import cover from '../../../media/img/cover_sale.jpg';
 import ItemList from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
-import Productos from '../../../mock';
+import Productos from '../../../mock/Productos';
 
 
 const ItemListContainer = ({greeting}) => {
@@ -22,17 +22,6 @@ const ItemListContainer = ({greeting}) => {
             }
         }
     )
-
-    console.log(arrayProductosFiltrado)
-
-    const contenidoCarrito = (producto) =>{
-        if(producto == 1){
-            console.log("Se añadio un producto al carrito")
-        }
-        else{
-            console.log("Se añadieron "+producto+" productos al carrito")
-        }
-    }
 
     const mostrarSaludo = () => {
         return(
@@ -53,7 +42,6 @@ const ItemListContainer = ({greeting}) => {
             </CardContent>
         )
     }
-
 
     return (
         

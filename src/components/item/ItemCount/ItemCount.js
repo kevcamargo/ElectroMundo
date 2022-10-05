@@ -25,8 +25,7 @@ const ItemCount = ({idProducto, stock, initial, onAdd}) => {
 
     const handler_agregarProductoAlCarrito = () => {
         setContador(initial)
-        onAdd(contador)
-        //onAdd(contador)
+        onAdd(contador, idProducto)
     }
 
     return(
