@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -16,15 +16,28 @@ import { Link } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import Categorias from '../../../mock/Categorias';
 import Productos from '../../../mock/Productos';
-import CartProvider, { CartContext} from '../../../context/CartContext';
+import {CartContext} from '../../../context/CartContext';
 
 const ItemDetail = ({producto}) => {
+    const [mostrarFinalizarCompra, setMostrarFinalizarCompra] = useState(false)
+    const [alertMensaje, setAlertMensaje] = useState("")
+    const [mostrarSinStock, setmostrarSinStock] = useState(false)
+    const {addItem, contenidoCart} = useContext(CartContext)
+    const productoCarrito = contenidoCart.find((x) => x.id==producto.id)
+    console.log(productoCarrito)
 
-    /* const arrayNombre = [{'nombre': 'pepe'},{'nombre':'pollo'}]
-    const arrayAñadido = [...arrayNombre,{'nombre':'pipo'}]
-    console.log(arrayAñadido)
-    console.log(arrayNombre) */
-    
+    useEffect(() => {
+        if(productoCarrito != null){
+            setmostrarSinStock(productoCarrito.cantidad == producto.stock)
+        }
+    },[])
+
+    const handlerClick_FinalizarCompra = (cantidadProducto, idProducto) => {
+        setMostrarFinalizarCompra(true)
+        setAlertMensaje(mensajeProductoAñadido(cantidadProducto))
+        const productoFiltrado = Productos.find( (x) => x.id==idProducto)
+        addItem(productoFiltrado, cantidadProducto)
+    }
 
     const obtenerRutaCategoria = (categoria) => {
         const arrayCategoriasFiltrado = Categorias
@@ -35,19 +48,8 @@ const ItemDetail = ({producto}) => {
             })
         return arrayCategoriasFiltrado[0].ruta
     }
-
-    const [mostrarFinalizarCompra, setMostrarFinalizarCompra] = useState(false)
-    const [alertMensaje, setAlertMensaje] = useState("")
-    const {addItem} = useContext(CartContext)
-
-    const handlerClick_FinalizarCompra = (cantidadProducto, idProducto) => {
-        setMostrarFinalizarCompra(true)
-        setAlertMensaje(mensajeProductoAñadido(cantidadProducto))
-        const productoFiltrado = Productos.find( (x) => x.id==idProducto)
-        addItem(productoFiltrado, cantidadProducto)
-    }
     
-    const mensajeProductoAñadido = (x) => x==1 ?  ("Se añadio un producto al carrito") : ("Se añadieron "+x+" productos al carrito");
+    const mensajeProductoAñadido = (x) => x==1 ?  ("Se añadio un producto al carrito.") : ("Se añadieron "+x+" productos al carrito.");
 
     return(
         <>
@@ -70,8 +72,9 @@ const ItemDetail = ({producto}) => {
                             </Grid>
                             <Grid item md={4} sx={{paddingLeft: 3}}>
                                 <h3 className='container--tituloProducto reset'>{producto.name}</h3>
-                                <h2 className='container--precio'>{producto.price}</h2>
+                                <h2 className='container--precio'>$ {Intl.NumberFormat('en-US').format(producto.price)}</h2>
                                 <Container sx={{paddingTop: 5}}>
+                                    
                                     {
                                         mostrarFinalizarCompra ?
                                         <Grid container xs={12}>
@@ -84,8 +87,19 @@ const ItemDetail = ({producto}) => {
                                             </Grid>
                                         </Grid>
                                         :
-                                        <ItemCount idProducto={producto.id} stock={producto.stock} initial={1} onAdd={handlerClick_FinalizarCompra} sx={{padding: 2}}/>
+                                        mostrarSinStock ? 
+                                            <Grid container xs={12}>
+                                                <Grid item xs={12}>
+                                                    <Alert sx={{marginBottom: 2}} className="container--alert" severity="warning" color="warning" variant="outlined"> Sin stock disponible.</Alert>
+                                                    <Button component={Link} to={"/"} variant="contained" className='boton_carrito'>
+                                                        Volver a Inicio
+                                                    </Button>
+                                                </Grid>
+                                            </Grid>
+                                        :
+                                        <ItemCount idProducto={producto.id} stock={ productoCarrito ? producto.stock - productoCarrito.cantidad : producto.stock} initial={1} onAdd={handlerClick_FinalizarCompra} sx={{padding: 2}}/>
                                     }
+                                    
                                 </Container>
                             </Grid>
                         </Grid>

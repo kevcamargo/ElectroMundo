@@ -63,7 +63,7 @@ const Productos = [
                 ]
             },
         ],
-        'price': "$ 449.999",
+        'price': 449999,
         'image_url': 'https://images.fravega.com/f1000/a5b583c9eb94cc2a8ce39a0ba0b9e88a.jpg',
         'image_url2': 'https://images.fravega.com/f1000/0204b08e0be5a60b6a90b5d5a77bfd2a.jpg',
         'stock': 5 
@@ -124,7 +124,7 @@ const Productos = [
                 ]
             },
         ],
-        'price': "$ 279.999",
+        'price': 279999,
         'image_url': 'https://images.fravega.com/f1000/4eaf9f18f59fdc4e60a1a5d1b4354f3b.jpg',
         'image_url2': 'https://images.fravega.com/f1000/2be5c365bb1e610fe5d9d2e432672010.jpg',
         'stock': 13
@@ -193,7 +193,7 @@ const Productos = [
                 ]
             },
         ],
-        'price': "$ 279.999",
+        'price': 279999,
         'image_url': 'https://http2.mlstatic.com/D_NQ_NP_2X_601827-MLA50836906330_072022-F.webp',
         'image_url2': 'https://images.fravega.com/f1000/f0c40fa01da35a746ab2dc13210a29b0.jpg',
         'stock': 5
@@ -262,7 +262,7 @@ const Productos = [
                 ]
             },
         ],
-        'price': "$ 89.999",
+        'price': 89999,
         'image_url': 'https://images.fravega.com/f1000/cdffd6dbf2957c7509cea01d2a9d3a2b.jpg',
         'image_url2': 'https://images.fravega.com/f1000/fe45431d7490682e97195d2434a08b6b.jpg',
         'stock': 22
@@ -331,7 +331,7 @@ const Productos = [
                 ]
             },
         ],
-        'price': "$ 745.749",
+        'price': 745749,
         'image_url': 'https://images.fravega.com/f1000/fd127ad03bb0ed21691b43f6bcc0a4cc.jpg',
         'image_url2': 'https://images.fravega.com/f1000/9f8478b3aed4d0639c562ae16e68694d.jpg',
         'stock': 2
@@ -400,7 +400,7 @@ const Productos = [
                 ]
             },
         ],
-        'price': "$ 215.999",
+        'price': 215999,
         'image_url': 'https://images.fravega.com/f1000/4d358213c5286831abadbd01009903a4.jpg',
         'image_url2': 'https://images.fravega.com/f1000/6493af1b5fa5379e7315706c9a7da0be.jpg',
         'stock': 20
@@ -453,7 +453,7 @@ const Productos = [
                 ]
             }
         ],
-        'price': "$ 119.999",
+        'price': 119999,
         'image_url': 'https://images.fravega.com/f1000/d14b8913da29491d66c856048692a9c7.jpg',
         'image_url2': 'https://images.fravega.com/f1000/117e2ab7a8101b90ac18f5e0b3586a9e.jpg',
         'stock': 9
@@ -506,7 +506,7 @@ const Productos = [
                 ]
             }
         ],
-        'price': "$ 219.999",
+        'price': 219999,
         'image_url': 'https://images.fravega.com/f1000/e2c6a6a62a0744fdab57693108b589f2.jpg',
         'image_url2': 'https://images.fravega.com/f1000/6687c8d1b27dce0a2f99da86b2cfbefb.jpg',
         'stock': 3
@@ -575,7 +575,7 @@ const Productos = [
                 ]
             }
         ],
-        'price': "$ 139.999",
+        'price': 139999,
         'image_url': 'https://images.fravega.com/f1000/7b98b9b9add9f191313c78ba5fdba371.jpg',
         'image_url2': 'https://images.fravega.com/f1000/50c279973e1e5285fed9ed4fd9def16d.jpg',
         'stock': 12
@@ -636,7 +636,7 @@ const Productos = [
                 ]
             }
         ],
-        'price': "$ 289.999",
+        'price': 289999,
         'image_url': 'https://http2.mlstatic.com/D_NQ_NP_2X_824278-MLA48182825534_112021-F.webp',
         'image_url2': 'https://http2.mlstatic.com/D_NQ_NP_2X_739160-MLA44484414453_012021-F.webp',
         'stock': 5
@@ -692,7 +692,7 @@ const Productos = [
                 ]
             }
         ],
-        'price': "$ 124.999",
+        'price': 124999,
         'image_url2': 'https://images.fravega.com/f1000/676b4dcf411b14af655c5c289ce72f33.jpg',
         'image_url': 'https://images.fravega.com/f1000/d7ca24bf5639a7db78c31aa9fa963be8.jpg',
         'stock': 6
@@ -731,7 +731,7 @@ const Productos = [
                 ]
             }
         ],
-        'price': "$ 149.999",
+        'price': 149999,
         'image_url2': 'https://images.fravega.com/f1000/f0ef28b9dea1d9f1e07ce69215c29bdf.jpg',
         'image_url': 'https://images.fravega.com/f1000/7354f802aab44a97ec189903a6dd90a9.jpg',
         'stock': 9
@@ -783,7 +783,7 @@ const Productos = [
                 ]
             }
         ],
-        'price': "$ 56.599",
+        'price': 56599,
         'image_url2': 'https://images.fravega.com/f1000/3c2f4b9b25e2d2ff9025f2b468573188.jpg',
         'image_url': 'https://images.fravega.com/f1000/15188657c6011da3e710694f8cea7eb5.jpg',
         'stock': 11

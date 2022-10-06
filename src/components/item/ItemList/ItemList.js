@@ -3,22 +3,6 @@ import Grid from '@mui/material/Grid';
 import Item from '../Item/Item';
 import './ItemList.css';
 
-// Modelo de promesa
-
-/* const promesa = new Promise((resolver,rechazar) => {
-    rechazar(true)
-});
-
-promesa.then(
-    resultado => {
-        console.log('Exito: '+resultado)
-    },
-    error => {
-        console.log('Error: '+ error)
-    }).finally(
-        () => {
-            console.log('Finalizado')
-    }) */
 
 const ItemList = ({array_productos}) => {
 
@@ -47,7 +31,7 @@ const ItemList = ({array_productos}) => {
                 setProductos(result)
             }).catch(() => {console.log("Error al cargar datos")})
 
-        },2000)
+        },1000)
     },[array_productos])
     
 

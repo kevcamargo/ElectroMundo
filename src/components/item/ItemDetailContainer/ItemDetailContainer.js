@@ -55,7 +55,7 @@ const ItemDetailContainer = () => {
 
             getItem()
 
-        },2000)
+        },1000)
 
     },[])
 

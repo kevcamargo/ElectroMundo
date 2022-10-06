@@ -22,8 +22,6 @@
 
 .header--button--carrito{
     color: #fbd007;
-    padding: 15px;
-    text-align: right;
 }
 
 .box{
@@ -44,7 +42,7 @@
 .Mui-selected{
     font-family: 'Inter', sans-serif !important;
     font-weight: bold;
-    background: rgba(64, 55, 5, 0.463);
+    background: rgb(35 35 35 / 87%);
     color: #fbd007;
     padding: 2px 5px;
     border-radius: 10px;

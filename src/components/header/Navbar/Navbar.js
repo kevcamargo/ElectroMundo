@@ -17,6 +17,7 @@ const Navbar = () => {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+
     };
 
     return (
@@ -37,7 +38,7 @@ const Navbar = () => {
                             {/* Espacio en blanco del navbar */}
                         </Grid>
                         <Grid textAlign="right" xs={2}>
-                            <Link to="/cart"><CartWidget/></Link>
+                            <Link to="/cart" onClick={handleChange}><CartWidget/></Link>
                         </Grid>
                     </Grid>
                 </Container>

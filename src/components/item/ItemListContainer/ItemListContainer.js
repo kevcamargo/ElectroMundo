@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './ItemListContainer.css';
 import Container from '@mui/material/Container';
@@ -57,7 +56,6 @@ const ItemListContainer = ({greeting}) => {
                     <CardContent className='main--cardcontentitem' sx={{borderColor: 'transparent'}}>
                         <ItemList array_productos={arrayProductosFiltrado}></ItemList>
                     </CardContent>
-
 
                 </Card>
             </Container>

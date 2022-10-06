@@ -51,7 +51,7 @@ const Item = ({producto}) => {
                     </h4>
                 </Link>
                 <h2 className='item--precio'>
-                    {producto.price}
+                    $ {Intl.NumberFormat('en-US').format(producto.price)}
                 </h2>
 
                 <div id={verDetalle} className="esconder">
