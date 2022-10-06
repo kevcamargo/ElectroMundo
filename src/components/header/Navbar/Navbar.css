@@ -47,3 +47,12 @@
     padding: 2px 5px;
     border-radius: 10px;
 }	
+
+.profile{
+    background: linear-gradient(180deg, rgb(254, 208, 3) 21%, rgb(174, 147, 27) 99%);
+    background-color: #fbd007 !important;
+    color: #232425 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500;
+    margin-top: 15px;
+}

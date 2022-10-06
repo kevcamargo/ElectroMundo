@@ -8,6 +8,8 @@ import logo from '../../../media/img/logo_electromundo.png'
 import Stack from '@mui/material/Stack';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
 import Categorias from '../../../mock/Categorias';
 import {Link} from 'react-router-dom';
 
@@ -17,7 +19,6 @@ const Navbar = () => {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-
     };
 
     return (
@@ -37,8 +38,11 @@ const Navbar = () => {
                         <Grid xs={8}>
                             {/* Espacio en blanco del navbar */}
                         </Grid>
-                        <Grid textAlign="right" xs={2}>
+                        <Grid textAlign="center" xs={1}>
                             <Link to="/cart" onClick={handleChange}><CartWidget/></Link>
+                        </Grid>
+                        <Grid textAlign="right" xs={1}>
+                            <Chip component={Link} to='/' className="profile" color="warning" avatar={<Avatar style={{backgroundColor: 'black', color:'#fbd007'}}>U</Avatar>} label="Usuario" />
                         </Grid>
                     </Grid>
                 </Container>

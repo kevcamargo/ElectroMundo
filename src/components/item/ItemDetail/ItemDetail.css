@@ -10,11 +10,12 @@
 }
 
 .container--boxProducto{
-    height: 60vh;
+    height: auto;
+    padding-bottom: 20px ;
 }
 
 .container--boxDetalle{
-    height: 75vh;
+    height: auto;
     padding: 15px 30px !important;
 }
 
