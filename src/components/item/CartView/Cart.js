@@ -1,47 +1,55 @@
 import React, { useContext, useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
+
+// Local Imports
+import {CartContext} from '../../../context/CartContext';
+import './Cart.css'; 
+
+// Modules Imports
+import { Box, Stack, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button} from '@mui/material';
+import { Link } from 'react-router-dom';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {CartContext} from '../../../context/CartContext';
-import Productos from '../../../mock/Productos';
 import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import HomeIcon from '@mui/icons-material/Home';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button} from '@mui/material';
-import './Cart.css'; 
-import { Link } from 'react-router-dom';
+
+
 
 const CartView = () => {
     const valorCartContext = useContext(CartContext)
     const [carritoVacio, setcarritoVacio] = useState(true)
     const [monto, setMonto] = useState(0)
     
-    const revisarCarritoVacio = () => {
+    
+    /* const revisarCarritoVacio = () => {
+        console.log(valorCartContext.contenidoCart.length)
         for(let producto of Productos){
             if(valorCartContext.isInCart(producto.id)){
                 return false
             }
         }
-        return true
-    }
+        return valorCartContext.contenidoCart.length!=0
+    } */
 
     const montoTotal = () => {
         let acumulador = 0
         if(valorCartContext.contenidoCart.length != 0){
             for(let i=0; i<valorCartContext.contenidoCart.length; i++){
-                const producto = productoFiltrado(valorCartContext.contenidoCart[i].id)
-                acumulador = (valorCartContext.contenidoCart[i].cantidad * producto.price) + acumulador
+
+                /* const producto = productoFiltrado(valorCartContext.contenidoCart[i].id)
+                acumulador = (valorCartContext.contenidoCart[i].cantidad * producto.price) + acumulador */
+
+                acumulador = (valorCartContext.contenidoCart[i].cantidad * valorCartContext.contenidoCart[i].price) + acumulador
+
             }
         }
         return acumulador
     }
 
-    const productoFiltrado = (idProducto) => Productos.find((producto) => idProducto == producto.id)
+    /* const productoFiltrado = (idProducto) => Productos.find((producto) => idProducto == producto.id) */
 
     useEffect(() => {
-        setcarritoVacio(revisarCarritoVacio())
+        setcarritoVacio(valorCartContext.contenidoCart.length==0)
         setMonto(montoTotal())
     },[valorCartContext])
 
@@ -79,29 +87,29 @@ const CartView = () => {
 
                 {valorCartContext.contenidoCart.map(
                     (x) =>
-                        
+            
                     <TableBody>
                         <TableRow>
                             <TableCell style={{width: 80}}>
-                                <img className='tabla--body--celda--img' src={productoFiltrado(x.id).image_url} ></img> 
+                                <img className='tabla--body--celda--img' src={x.image_url} ></img> 
                             </TableCell>
                             <TableCell className='tabla--body--celda'>
-                                <Link className="producto--nombre" to={"/producto/"+productoFiltrado(x.id).id}>{productoFiltrado(x.id).name}</Link>
+                                <Link className="producto--nombre" to={"/producto/"+x.id}>{x.name}</Link>
                             </TableCell>
                             <TableCell style={{textAlign: 'center'}}>
-                                {Intl.NumberFormat('en-US').format(productoFiltrado(x.id).price)} $
+                                {Intl.NumberFormat('en-US').format(x.price)} $
                             </TableCell>
                             <TableCell style={{textAlign: 'center'}}>
                                 <IconButton disabled={x.cantidad==1} color='inherit'>
-                                    <RemoveCircleIcon onClick={ () => valorCartContext.addItem(productoFiltrado(x.id),-1)}/>
+                                    <RemoveCircleIcon onClick={ () => valorCartContext.addItem(x,-1)}/>
                                 </IconButton>
                                 {x.cantidad}
-                                <IconButton disabled={productoFiltrado(x.id).stock==x.cantidad} color='inherit'>
-                                    <AddCircleIcon onClick={ () => valorCartContext.addItem(productoFiltrado(x.id),1)}/>
+                                <IconButton disabled={x.stock==x.cantidad} color='inherit'>
+                                    <AddCircleIcon onClick={ () => valorCartContext.addItem(x,1)}/>
                                 </IconButton>
                             </TableCell>
                             <TableCell style={{textAlign: 'right'}}>
-                                {Intl.NumberFormat('en-US').format(x.cantidad * parseFloat(productoFiltrado(x.id).price))} $
+                                {Intl.NumberFormat('en-US').format(x.cantidad * parseFloat(x.price))} $
                             </TableCell>
                             <TableCell className='boton--eliminar' align='center'>
                                 <IconButton size='large' color='inherit' onClick={() => valorCartContext.removeItem(x.id)}>

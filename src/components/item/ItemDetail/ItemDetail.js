@@ -1,30 +1,27 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Table from '@mui/material/Table';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+
+// Local Imports
 import ItemCount from '../ItemCount/ItemCount';
-import Button from '@mui/material/Button';
 import './ItemDetail.css';
-import DoneIcon from '@mui/icons-material/Done';
-import { Link } from 'react-router-dom';
-import Alert from '@mui/material/Alert';
 import Categorias from '../../../mock/Categorias';
-import Productos from '../../../mock/Productos';
 import {CartContext} from '../../../context/CartContext';
 
+// Modules Imports
+import { Alert, Box, Container, Grid, Stack, Table, TableCell, TableContainer, TableHead, TableRow, Button } from "@mui/material"
+import DoneIcon from '@mui/icons-material/Done';
+import { Link } from 'react-router-dom';
+
+
+
+
 const ItemDetail = ({producto}) => {
+    const {addItem, contenidoCart} = useContext(CartContext)
+
     const [mostrarFinalizarCompra, setMostrarFinalizarCompra] = useState(false)
     const [alertMensaje, setAlertMensaje] = useState("")
     const [mostrarSinStock, setmostrarSinStock] = useState(false)
-    const {addItem, contenidoCart} = useContext(CartContext)
+    
     const productoCarrito = contenidoCart.find((x) => x.id==producto.id)
-    console.log(productoCarrito)
 
     useEffect(() => {
         if(productoCarrito != null){
@@ -35,8 +32,7 @@ const ItemDetail = ({producto}) => {
     const handlerClick_FinalizarCompra = (cantidadProducto, idProducto) => {
         setMostrarFinalizarCompra(true)
         setAlertMensaje(mensajeProductoAñadido(cantidadProducto))
-        const productoFiltrado = Productos.find( (x) => x.id==idProducto)
-        addItem(productoFiltrado, cantidadProducto)
+        addItem(producto, cantidadProducto)
     }
 
     const obtenerRutaCategoria = (categoria) => {
@@ -117,7 +113,7 @@ const ItemDetail = ({producto}) => {
                     </Box>
 
                     {/* Características Tecnicas */}
-                    <Box className="container--boxCaracteristicas">
+                    {/* <Box className="container--boxCaracteristicas">
                         <h3 className='container--subtitulo'>Características Técnicas</h3>
                         <Stack justifyContent="center" alignItems="center" spacing={2}>
 
@@ -151,7 +147,7 @@ const ItemDetail = ({producto}) => {
                             
                         </Stack>
                     </Box>
-                    
+                     */}
                 </div>
             
             </Container>

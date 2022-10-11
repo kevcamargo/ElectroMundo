@@ -1,70 +1,66 @@
 import React,{useEffect, useState} from 'react';
-import Grid from '@mui/material/Grid';
+
+// Local Imports
 import './ItemDetailContainer.css';
 import ItemDetail from '../ItemDetail/ItemDetail';
+
+// Modules Imports
+import Grid from '@mui/material/Grid';
 import { useParams } from 'react-router-dom';
-import Productos from '../../../mock/Productos';
+import { db } from '../../../fuegobase/fuegobase';
+import { collection, getDoc, doc } from 'firebase/firestore';
+
+
 
 
 const ItemDetailContainer = () => {
 
     const {idProducto} = useParams()
+    const [item, setItem] = useState({})     
 
-    const arrayProductoFiltrado = Productos.filter( 
-        (elemento) => {
-            if(elemento.id == idProducto){
-                return elemento
-            }
-        }
-    )
-
-    const promesa = new Promise((res,rej)=>{
-        res(arrayProductoFiltrado[0])
-    })
-
-    // Esta linea la comentamos porque no me funciona productos.caracteristicas en ItemDetail.js 
-    //const [item, setItem] = useState([{}]) 
-
-    // Si la defino asi entonces si me funciona. Obviamente si hago esto, el useEffect no tendria sentido. Porque inicialmente le estoy asignado el valor del arrayProductoFiltrado[0]
-    const [item, setItem] = useState(arrayProductoFiltrado[0])
-    
     // Efecto para el montaje
     
-    useEffect(() => {   
-    
+    useEffect( () => {
+
         const e_loader = document.getElementById("loaderDetail")
         const e_gridContainer = document.getElementById("gridContainerDetail")
+        const e_error = document.getElementById("error")
+
+        e_loader.classList.remove("esconder")
         e_gridContainer.classList.add("esconder")
-    
-        setTimeout(()=>{
-            e_loader.classList.add("esconder")
-            e_gridContainer.classList.remove("esconder")
+        e_error.classList.add("esconder")
 
-            const getItem = async () => {
-                try{
-                    console.log(promesa)
-                    const respuesta = await promesa
-                    
-                    setItem(respuesta)
-                    console.log("Exito")
+        const productosCollection = collection(db, 'productos')
+        const ref = doc(productosCollection, idProducto)
+
+        getDoc(ref).then( 
+            async (result) => {
+                if(result.data() != undefined){
+                    await setItem({
+                        id: result.id,
+                        ...result.data()
+                    })
+                    e_loader.classList.add("esconder")
+                    e_gridContainer.classList.remove("esconder")
                 }
-                catch{
-                    console.log("Error")
+                else{
+                    await setItem({})
+                    e_loader.classList.add("esconder")
+                    e_error.innerText = "Producto inexistente"
+                    e_error.classList.remove("esconder")
                 }
-            }
+        }).catch((error) => { 
+            console.log(error)
+            e_error.classList.remove("esconder")})
+        
+    },[idProducto])
 
-            getItem()
-
-        },1000)
-
-    },[])
-
-    
     return(
         <>  
             <span id="loaderDetail" className="loader"></span>
+            <h2 id="error" className="error esconder">Error al cargar datos</h2>
             <Grid container id="gridContainerDetail" className='esconder'>
-                <ItemDetail producto={item} />
+                {Object.keys(item).length != 0 ? <ItemDetail producto={item} /> : <h1>Error al cargar producto</h1>}
             </Grid>
         </>
     )

@@ -1,28 +1,17 @@
 import React from 'react';
+
+// Local Imports
 import './Item.css';
-import Grid from '@mui/material/Grid';
 import ItemCount from '../ItemCount/ItemCount';
-import IconButton from '@mui/material/IconButton';
+
+// Modules Imports
+import {Grid, IconButton, Table, TableCell, TableContainer, TableHead, TableRow } from '@mui/material/';
 import MemoryIcon from '@mui/icons-material/Memory';
-import Table from '@mui/material/Table';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom';
 
 
 const Item = ({producto}) => {
-
-    const contenidoCarrito = (x) =>{
-        if(x == 1){
-            console.log("Se añadio un producto al carrito")
-        }
-        else{
-            console.log("Se añadieron "+x+" productos al carrito")
-        }
-    }
-
+    
     const verDetalle = 'verDetalle'+producto.id
     const spanMostrar = 'span'+producto.id
     const spanOcultar = 'spant'+producto.id
@@ -34,6 +23,21 @@ const Item = ({producto}) => {
         div_detalle.classList.toggle("esconder")
         e_spanMostrar.classList.toggle("esconder")
         e_spanOcultar.classList.toggle("esconder")
+    }
+
+    const renderDetalle = () => {
+        let renderDetalle = []
+        if(producto.specs_detalle != undefined){
+            for(let i = 0; i < producto.specs_detalle.length; i++) {
+                renderDetalle.push(
+                    <TableRow>
+                        <TableCell className='specs--cell negrita'>{producto.specs_name[i]}</TableCell>
+                        <TableCell className='specs--cell' align='right'>{producto.specs_detalle[i]}</TableCell>
+                    </TableRow>
+                )
+            }
+        }
+        return renderDetalle
     }
 
     return(
@@ -74,15 +78,7 @@ const Item = ({producto}) => {
                         <TableContainer>
                             <Table>
                                 <TableHead>
-                                    {
-                                        producto.specs.map(
-                                            (x) => 
-                                            <TableRow>
-                                                <TableCell className='specs--cell negrita'>{x.tituloDetalle}</TableCell>
-                                                <TableCell className='specs--cell' align='right'>{x.detalle}</TableCell>
-                                            </TableRow>
-                                        )
-                                    }
+                                    {renderDetalle()}
                                 </TableHead>
                             </Table>
                         </TableContainer>

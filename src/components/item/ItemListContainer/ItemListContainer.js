@@ -1,26 +1,28 @@
 import React from 'react';
+
+// Local Imports
 import './ItemListContainer.css';
-import Container from '@mui/material/Container';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import StarIcon from '@mui/icons-material/Star';
-import cover from '../../../media/img/cover_sale.jpg';
 import ItemList from '../ItemList/ItemList';
-import { useParams } from 'react-router-dom';
 import Productos from '../../../mock/Productos';
+import cover from '../../../media/img/cover_sale.jpg';
+
+// Modules Imports
+import {Container, Card, CardContent} from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
+import { useParams } from 'react-router-dom';
+
 
 
 const ItemListContainer = ({greeting}) => {
+    const {idCategoria} = useParams()    
 
-    const {idCategoria} = useParams()
-
-    const arrayProductosFiltrado = Productos.filter( 
+    /* const arrayProductosFiltrado = Productos.filter( 
         (elemento) => {
             if(elemento.categoria === idCategoria || idCategoria == undefined){
                 return elemento
             }
         }
-    )
+    ) */
 
     const mostrarSaludo = () => {
         return(
@@ -54,7 +56,9 @@ const ItemListContainer = ({greeting}) => {
                     {greeting != undefined ? mostrarRecomendacion() : null}
 
                     <CardContent className='main--cardcontentitem' sx={{borderColor: 'transparent'}}>
-                        <ItemList array_productos={arrayProductosFiltrado}></ItemList>
+                        <ItemList nombreCategoria={idCategoria}></ItemList>
+                        
+                        {/* <ItemList array_productos={arrayProductos}></ItemList> */}
                     </CardContent>
 
                 </Card>

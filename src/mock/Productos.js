@@ -275,7 +275,7 @@ const Productos = [
         'specs': [
             {
                 'tituloDetalle': 'Camara',
-                'detalle': 'Frontal 12 MP Principal 12 MP '
+                'detalle': 'Frontal 12 MP Principal 12 MP'
             },
             {
                 'tituloDetalle': 'Memoria RAM',
@@ -340,7 +340,7 @@ const Productos = [
         'id': 105,
         'categoria': 'celulares',
         'name':  "Celular Samsung Galaxy S22 Black",
-        'descripcion': 'Con un diseño de vanguardia, el celular Samsung Galaxy S22 es un teléfono único que ofrece una pantalla Dynamic AMOLED 2x con una resolución Full HD+ sin Notch ni distracciones. Además, tiene 8GB de RAM y 128GB de almacenamiento. El Galaxy S22 presenta un diseño ergonómico, elegante y delgado. Con la pantalla de 6.1" con una resolución FHD+ (2340 x 1080p) vas a poder sumergirte en tus juegos y videos favoritos. Además, con su panel Dynamic AMOLED 2X, de extremo a extremo, con marco casi inexistente, el Galaxy S22 rediseña tus momentos de entretenimiento. Con su tecnología Vision Booster consigue una alta visibilidad al aire libre, lo que mantiene la vista nítida a plena luz del día o de noche. ',
+        'descripcion': 'Con un diseño de vanguardia, el celular Samsung Galaxy S22 es un teléfono único que ofrece una pantalla Dynamic AMOLED 2x con una resolución Full HD+ sin Notch ni distracciones. Además, tiene 8GB de RAM y 128GB de almacenamiento. El Galaxy S22 presenta un diseño ergonómico, elegante y delgado. Con la pantalla de 6.1" con una resolución FHD+ (2340 x 1080p) vas a poder sumergirte en tus juegos y videos favoritos. Además, con su panel Dynamic AMOLED 2X, de extremo a extremo, con marco casi inexistente, el Galaxy S22 rediseña tus momentos de entretenimiento. Con su tecnología Vision Booster consigue una alta visibilidad al aire libre, lo que mantiene la vista nítida a plena luz del día o de noche.',
         'specs': [
             {
                 'tituloDetalle': 'Camara',
