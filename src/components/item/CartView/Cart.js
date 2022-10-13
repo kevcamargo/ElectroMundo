@@ -5,48 +5,75 @@ import {CartContext} from '../../../context/CartContext';
 import './Cart.css'; 
 
 // Modules Imports
-import { Box, Stack, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button} from '@mui/material';
+import { Box, Stack, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Grid, Tooltip} from '@mui/material';
 import { Link } from 'react-router-dom';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import CheckIcon from '@mui/icons-material/Check';
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import { db } from '../../../fuegobase/fuegobase';
+import { getDoc, collection, doc, addDoc, serverTimestamp } from 'firebase/firestore';
 
 
 
 const CartView = () => {
     const valorCartContext = useContext(CartContext)
+
     const [carritoVacio, setcarritoVacio] = useState(true)
     const [monto, setMonto] = useState(0)
-    
-    
-    /* const revisarCarritoVacio = () => {
-        console.log(valorCartContext.contenidoCart.length)
-        for(let producto of Productos){
-            if(valorCartContext.isInCart(producto.id)){
-                return false
-            }
+    const [comprador, setComprador] = useState([])
+    const [compraExitosa, setCompraExitosa] = useState(false)
+
+    const usuariosCollection = collection(db, 'usuarios')
+    const ventasCollection = collection(db, 'ventas')
+    const ref = doc(usuariosCollection, "FaMaFUuuvaPms9Q2k6sA")
+
+    getDoc(ref).then(
+        async (result) => {
+            const usuario = await result.data()
+            setComprador(usuario)
         }
-        return valorCartContext.contenidoCart.length!=0
-    } */
+    ).catch(
+        (error) =>
+        console.log(error)
+    )
+    
+    const productosAdquiridos = valorCartContext.contenidoCart.map(
+        (producto) => {
+            return {
+                id: producto.id,
+                name: producto.name,
+                cantidad: producto.cantidad,
+                total: (parseInt(producto.cantidad) * parseInt(producto.price))
+            }
+    })
+
+    const handlerFinalizarCompra = () => {
+
+        addDoc(ventasCollection, {
+            comprador,
+            items: productosAdquiridos,
+            date: serverTimestamp(),
+            total: monto
+        }) 
+
+        setCompraExitosa(true)
+        valorCartContext.clear()
+    }
 
     const montoTotal = () => {
         let acumulador = 0
         if(valorCartContext.contenidoCart.length != 0){
             for(let i=0; i<valorCartContext.contenidoCart.length; i++){
-
-                /* const producto = productoFiltrado(valorCartContext.contenidoCart[i].id)
-                acumulador = (valorCartContext.contenidoCart[i].cantidad * producto.price) + acumulador */
-
                 acumulador = (valorCartContext.contenidoCart[i].cantidad * valorCartContext.contenidoCart[i].price) + acumulador
-
             }
         }
         return acumulador
     }
-
-    /* const productoFiltrado = (idProducto) => Productos.find((producto) => idProducto == producto.id) */
 
     useEffect(() => {
         setcarritoVacio(valorCartContext.contenidoCart.length==0)
@@ -136,20 +163,59 @@ const CartView = () => {
                     </Table>
                 </TableContainer>
 
-                <Button color='inherit' className='boton--limpiar' variant="outlined" onClick={valorCartContext.clear}>Limpiar Carrito</Button>
+                <Grid container>
+                    <Grid xs={2}></Grid>
+                    <Grid xs={3} style={{padding: 1}}>
+                        <Button color='inherit' className='boton--limpiar' variant="outlined" onClick={valorCartContext.clear}>
+                            <CleaningServicesIcon sx={{marginRight: 2}}/> Limpiar Carrito
+                        </Button>
+                    </Grid>
+                    <Grid xs={2}></Grid>
+                    <Grid xs={3}>
+                        <Tooltip title={'Antes de finalizar su compra. Por favor, valide si sus datos de usuario son correctos.'}>
+                            <Button color='inherit' className='boton--limpiar' variant="outlined" onClick={handlerFinalizarCompra}>
+                                <CheckIcon sx={{marginRight: 2}}/> Finalizar Compra
+                            </Button>
+                        </Tooltip>
+                        
+                    </Grid>
+                    <Grid xs={2}></Grid>
+                </Grid>
             </>
         )
     }
     
+    const renderCompraExitosa = () => {
+        return(
+            
+            <>
+                <Stack>
+                    <h1 className='titulo'> ¡ Gracias por su compra ! </h1>
+                </Stack>
+                <Stack>
+                    <ShoppingBagIcon sx={{ fontSize: 180, padding: 5}} />
+                </Stack>
+                <Stack>
+                    <h2 className='subtitulo'> Le invitamos a que siga explorando nuestros productos. </h2>
+                </Stack>
+                <Button component={Link} to='/' color='inherit' className='boton--inicio' variant="outlined">Volver a Inicio</Button>
+            </>
+            
+        )
+    }
+
     return(
         <Container>
              <Stack spacing={2} style={{alignItems: 'center'}}>
-            { carritoVacio ? 
-                renderCarritoVacio()
-                :
-                renderCarritoProductos()
-            }            
-        </Stack>
+                { carritoVacio && !compraExitosa ? 
+                    renderCarritoVacio()
+                    :
+                    compraExitosa ? 
+                        renderCompraExitosa()
+                        :
+                        renderCarritoProductos()
+                }            
+            </Stack>
         </Container>
        
     )

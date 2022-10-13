@@ -3,7 +3,6 @@ import React from 'react';
 // Local Imports
 import './ItemListContainer.css';
 import ItemList from '../ItemList/ItemList';
-import Productos from '../../../mock/Productos';
 import cover from '../../../media/img/cover_sale.jpg';
 
 // Modules Imports
@@ -15,14 +14,6 @@ import { useParams } from 'react-router-dom';
 
 const ItemListContainer = ({greeting}) => {
     const {idCategoria} = useParams()    
-
-    /* const arrayProductosFiltrado = Productos.filter( 
-        (elemento) => {
-            if(elemento.categoria === idCategoria || idCategoria == undefined){
-                return elemento
-            }
-        }
-    ) */
 
     const mostrarSaludo = () => {
         return(
