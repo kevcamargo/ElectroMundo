@@ -16,7 +16,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { db } from '../../../fuegobase/fuegobase';
-import { getDoc, collection, doc, addDoc, serverTimestamp } from 'firebase/firestore';
+import { getDoc, collection, doc, addDoc, serverTimestamp, updateDoc} from 'firebase/firestore';
 
 
 
@@ -30,9 +30,10 @@ const CartView = () => {
 
     const usuariosCollection = collection(db, 'usuarios')
     const ventasCollection = collection(db, 'ventas')
-    const ref = doc(usuariosCollection, "FaMaFUuuvaPms9Q2k6sA")
+    const productosCollection = collection(db, 'productos')
 
-    getDoc(ref).then(
+    const ref_Usuarios = doc(usuariosCollection, "FaMaFUuuvaPms9Q2k6sA")
+    getDoc(ref_Usuarios).then(
         async (result) => {
             const usuario = await result.data()
             setComprador(usuario)
@@ -41,7 +42,7 @@ const CartView = () => {
         (error) =>
         console.log(error)
     )
-    
+
     const productosAdquiridos = valorCartContext.contenidoCart.map(
         (producto) => {
             return {
@@ -52,6 +53,19 @@ const CartView = () => {
             }
     })
 
+    const actualizarStock = () => {
+        const productos = valorCartContext.contenidoCart
+
+        for (let index = 0; index < productos.length; index++) {
+            const ref_Productos = doc(productosCollection, productos[index].id)
+            updateDoc(ref_Productos, {
+                stock: productos[index].stock - productos[index].cantidad
+            });
+            
+        }
+
+    }
+    
     const handlerFinalizarCompra = () => {
 
         addDoc(ventasCollection, {
@@ -61,6 +75,7 @@ const CartView = () => {
             total: monto
         }) 
 
+        actualizarStock()
         setCompraExitosa(true)
         valorCartContext.clear()
     }
