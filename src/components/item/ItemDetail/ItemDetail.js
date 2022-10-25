@@ -15,8 +15,11 @@ import { Link } from 'react-router-dom';
 
 
 const ItemDetail = ({producto}) => {
+
+    // Context
     const {addItem, contenidoCart} = useContext(CartContext)
 
+    // States
     const [mostrarFinalizarCompra, setMostrarFinalizarCompra] = useState(false)
     const [alertMensaje, setAlertMensaje] = useState("")
     const [mostrarSinStock, setmostrarSinStock] = useState(false)
@@ -112,42 +115,6 @@ const ItemDetail = ({producto}) => {
                         </Stack>
                     </Box>
 
-                    {/* Características Tecnicas */}
-                    {/* <Box className="container--boxCaracteristicas">
-                        <h3 className='container--subtitulo'>Características Técnicas</h3>
-                        <Stack justifyContent="center" alignItems="center" spacing={2}>
-
-                            {producto.caracteristicas.map(
-                                (x) => 
-                                <TableContainer>
-                                    <Table>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell className='specs--titulo negrita' width={300} align='center'>{x.titulo}</TableCell>
-                                                <TableCell className='specs--cell' align='right'>
-                                                    <TableContainer>
-                                                            <Table>
-                                                                <TableHead>
-                                                                    {x.data.map(
-                                                                        (y) => 
-                                                                        <TableRow>
-                                                                            <TableCell className='specs--cell negrita'>{y.subtitulo}</TableCell>
-                                                                            <TableCell className='specs--cell' align='right'>{y.detalle}</TableCell>
-                                                                        </TableRow>
-                                                                    )}
-                                                                </TableHead>
-                                                            </Table>
-                                                    </TableContainer>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                    </Table>
-                                </TableContainer>
-                            )}
-                            
-                        </Stack>
-                    </Box>
-                     */}
                 </div>
             
             </Container>

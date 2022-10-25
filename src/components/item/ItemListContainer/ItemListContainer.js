@@ -13,6 +13,8 @@ import { useParams } from 'react-router-dom';
 
 
 const ItemListContainer = ({greeting}) => {
+
+    // Router
     const {idCategoria} = useParams()    
 
     const mostrarSaludo = () => {
@@ -48,8 +50,6 @@ const ItemListContainer = ({greeting}) => {
 
                     <CardContent className='main--cardcontentitem' sx={{borderColor: 'transparent'}}>
                         <ItemList nombreCategoria={idCategoria}></ItemList>
-                        
-                        {/* <ItemList array_productos={arrayProductos}></ItemList> */}
                     </CardContent>
 
                 </Card>

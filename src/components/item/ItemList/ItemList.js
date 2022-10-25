@@ -3,15 +3,16 @@ import React,{useEffect, useState} from 'react';
 // Local Imports
 import Item from '../Item/Item';
 import './ItemList.css';
+import { db } from '../../../fuegobase/fuegobase';
 
 // Modules Imports
 import Grid from '@mui/material/Grid';
-import { db } from '../../../fuegobase/fuegobase';
 import { getDocs,collection, query, where, orderBy ,limit } from 'firebase/firestore';
 
 
 const ItemList = ({nombreCategoria}) => {
 
+    // State
     const [productos, setProductos] = useState([])
 
     useEffect(() => {   

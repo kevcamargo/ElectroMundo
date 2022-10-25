@@ -2,7 +2,6 @@ import React from 'react';
 
 // Local Imports
 import './Item.css';
-import ItemCount from '../ItemCount/ItemCount';
 
 // Modules Imports
 import {Grid, IconButton, Table, TableCell, TableContainer, TableHead, TableRow } from '@mui/material/';
@@ -43,17 +42,20 @@ const Item = ({producto}) => {
     return(
         <>
             <Grid item xs={4}>
+
                 <IconButton onClick={mostrarDetalle}>
                     <img src={producto.image_url} className='item--img' alt={producto.id}>
                     </img>
                     <span id={spanMostrar} className='span'>Mostrar Detalles</span>
                     <span id={spanOcultar} className='span esconder'>Ocultar Detalles</span>
                 </IconButton>
+
                 <Link to={"/producto/"+producto.id}>
                     <h4 className='item--titulo'>
                         {producto.name}
                     </h4>
                 </Link>
+                
                 <h2 className='item--precio'>
                     $ {Intl.NumberFormat('en-US').format(producto.price)}
                 </h2>
@@ -85,8 +87,6 @@ const Item = ({producto}) => {
                     </Grid>
                     
                 </div>
-
-                {/* <ItemCount idProducto={producto.id} stock={producto.stock} initial={1} onAdd={contenidoCarrito}/> */}
 
             </Grid>
         </>

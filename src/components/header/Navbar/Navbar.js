@@ -16,8 +16,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const Navbar = () => {
+
+    // Context
     const valorUserContext = useContext(UserContext)
 
+    // States
     const [value, setValue] = React.useState('');
     const [username, setUsername] = React.useState('...');
 

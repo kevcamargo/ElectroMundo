@@ -15,11 +15,12 @@ import { collection, getDoc, doc } from 'firebase/firestore';
 
 const ItemDetailContainer = () => {
 
+    // Router
     const {idProducto} = useParams()
+
+    // State
     const [item, setItem] = useState({})     
 
-    // Efecto para el montaje
-    
     useEffect( () => {
 
         const e_loader = document.getElementById("loaderDetail")

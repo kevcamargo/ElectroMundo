@@ -1,13 +1,22 @@
 import React, {useContext, useState, useEffect} from 'react';
+
+// Local Imports
 import '../Navbar/Navbar.css';
+import {CartContext} from '../../../context/CartContext';
+
+// Modules Imports
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
-import {CartContext} from '../../../context/CartContext';
+
 
 
 const CartWidget = () => {
+
+    // Context
     const valorCartContext = useContext(CartContext)
+
+    // State
     const [cantidadCarrito, setcantidadCarrito] = useState(0)
 
     const actualizarCantidad = () => {

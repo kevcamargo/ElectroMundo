@@ -3,36 +3,41 @@ import React, { useContext, useState, useEffect } from 'react';
 // Local Imports
 import {CartContext} from '../../../context/CartContext';
 import './Cart.css'; 
+import { db } from '../../../fuegobase/fuegobase';
 
 // Modules Imports
-import { Box, Stack, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Grid, Tooltip} from '@mui/material';
+import { Box, Stack, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Grid, Tooltip, IconButton} from '@mui/material';
 import { Link } from 'react-router-dom';
+import { getDoc, collection, doc, addDoc, serverTimestamp, updateDoc} from 'firebase/firestore';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import CheckIcon from '@mui/icons-material/Check';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import { db } from '../../../fuegobase/fuegobase';
-import { getDoc, collection, doc, addDoc, serverTimestamp, updateDoc} from 'firebase/firestore';
+
 
 
 
 const CartView = () => {
+
+     // Context
     const valorCartContext = useContext(CartContext)
 
+    // States
     const [carritoVacio, setcarritoVacio] = useState(true)
     const [monto, setMonto] = useState(0)
     const [comprador, setComprador] = useState([])
     const [compraExitosa, setCompraExitosa] = useState(false)
-
+    
+    // Firestore
     const usuariosCollection = collection(db, 'usuarios')
     const ventasCollection = collection(db, 'ventas')
     const productosCollection = collection(db, 'productos')
 
     const ref_Usuarios = doc(usuariosCollection, "FaMaFUuuvaPms9Q2k6sA")
+
     getDoc(ref_Usuarios).then(
         async (result) => {
             const usuario = await result.data()

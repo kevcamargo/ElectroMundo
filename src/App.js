@@ -1,12 +1,15 @@
+// Local Imports
 import './App.css';
 import Navbar from './components/header/Navbar/Navbar';
 import ItemListContainer from './components/item/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/item/ItemDetailContainer/ItemDetailContainer';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Cart from './components/item/CartView/Cart';
-import CartProvider from './context/CartContext';
 import DataUser from './components/item/DataUser/DataUser';
+import CartProvider from './context/CartContext';
 import UserProvider from './context/UserContext';
+
+// Modules Imports
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 const App = () => {

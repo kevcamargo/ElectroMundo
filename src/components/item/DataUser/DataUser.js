@@ -14,6 +14,7 @@ import { getDoc, collection, doc, updateDoc } from 'firebase/firestore';
 
 
 const DataUser = () => {
+    
     // Context
     const valorUserContext = useContext(UserContext)
 
@@ -47,7 +48,6 @@ const DataUser = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(nombre+apellido+domicilio+mail+telefono)
         
         const usuarioDefault = doc(db,"usuarios", "FaMaFUuuvaPms9Q2k6sA")
         updateDoc(usuarioDefault, {
@@ -57,6 +57,7 @@ const DataUser = () => {
             mail,
             telefono
         })
+
         setMostrarAlert(true)
         valorUserContext.updateName(nombre)
     }

@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
+
+// Local Imports
+import './ItemCount.css';
+
+// Modules Imports
+import {Grid, Button, Input} from '@mui/material/';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
-import Input from '@mui/material/Input';
-import Grid from '@mui/material/Grid';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import './ItemCount.css';
+
 
 const ItemCount = ({idProducto, stock, initial, onAdd}) => {
 
+    // State
     const [contador, setContador] = useState(initial)
     
     const sumarProducto = () => {
