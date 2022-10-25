@@ -134,20 +134,20 @@ Se lo utiliza para dar efecto de actualizacion en el nombre del usuario dentro d
 ----
 ## Arbol de Componentes
 
-###App.js
+### App.js
 
-####:arrow_right: Navbar
-####:arrow_right: :arrow_right: CartWidget
-####:arrow_right: ItemListContainer
-####:arrow_right: ItemDetailContainer
-####:arrow_right: Cart
-####:arrow_right: DataUser
+:arrow_right: Navbar
+:arrow_right: :arrow_right: CartWidget
+:arrow_right: ItemListContainer
+:arrow_right: ItemDetailContainer
+:arrow_right: Cart
+:arrow_right: DataUser
 
 
 ### ItemListContainer
-####:arrow_right: ItemList
-####:arrow_right: :arrow_right: Item
+:arrow_right: ItemList
+:arrow_right: :arrow_right: Item
 
 ### ItemDetailContainer
-####:arrow_right: ItemDetail
-####:arrow_right: :arrow_right: ItemCount
+:arrow_right: ItemDetail
+:arrow_right: :arrow_right: ItemCount
