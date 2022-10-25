@@ -17,6 +17,7 @@ const ItemListContainer = ({greeting}) => {
     // Router
     const {idCategoria} = useParams()    
 
+    // Se renderiza un saludo junto con una imagen de cover
     const mostrarSaludo = () => {
         return(
             <>
@@ -26,6 +27,7 @@ const ItemListContainer = ({greeting}) => {
         )
     }
     
+    // Se renderiza una recomendacion dentro de un card
     const mostrarRecomendacion = () => {
         return(
             <CardContent className='main--cardcontent'>

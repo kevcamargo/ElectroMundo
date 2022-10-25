@@ -15,6 +15,8 @@ const Item = ({producto}) => {
     const spanMostrar = 'span'+producto.id
     const spanOcultar = 'spant'+producto.id
 
+
+    // mostrarDetalle - Al hacer click se procede a realizar un toggle para ocultar o mostrar los detalles de un producto 
     const mostrarDetalle = () => {
         const div_detalle = document.getElementById(verDetalle)
         const e_spanMostrar = document.getElementById(spanMostrar)
@@ -24,6 +26,7 @@ const Item = ({producto}) => {
         e_spanOcultar.classList.toggle("esconder")
     }
 
+    // Renderiza los datos de detalle de un producto
     const renderDetalle = () => {
         let renderDetalle = []
         if(producto.specs_detalle != undefined){

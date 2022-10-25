@@ -32,12 +32,14 @@ const ItemDetail = ({producto}) => {
         }
     },[])
 
-    const handlerClick_FinalizarCompra = (cantidadProducto, idProducto) => {
+    // handlerClick_FinalizarCompra - Luego de finalizar la compra. Se cambia el estado de mostrarFinalizarCompra para mostrar el bloque de codigo para mostrar de finalizar compra. Luego nos muestra un mensaje indicando la cantidad añadida al carrito y se añade el producto al carrito a traves de la funcion addItem del context CartContext
+    const handlerClick_FinalizarCompra = (cantidadProducto) => {
         setMostrarFinalizarCompra(true)
         setAlertMensaje(mensajeProductoAñadido(cantidadProducto))
         addItem(producto, cantidadProducto)
     }
 
+    // obtenerRutaCategoria - Devuelve la ruta de dada categoria. La usaremos para el componente Link
     const obtenerRutaCategoria = (categoria) => {
         const arrayCategoriasFiltrado = Categorias
             .filter( (x) => {

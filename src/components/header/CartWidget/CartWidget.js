@@ -19,6 +19,7 @@ const CartWidget = () => {
     // State
     const [cantidadCarrito, setcantidadCarrito] = useState(0)
 
+    // actualizarCantidad - Se encarga de retornar el numero total de la cantidad de productos que hay en el carrito actualmente. 
     const actualizarCantidad = () => {
         let acumulador = 0
         if(valorCartContext.contenidoCart.length != 0){

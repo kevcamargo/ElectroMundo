@@ -28,6 +28,7 @@ const Navbar = () => {
         setUsername(valorUserContext.nombre)
     },[valorUserContext])
 
+    // handleChange - Se lo utiliza cuando se hace click en una categoria. Genera un cambio de valor en el estado. Le da sentido al componente BottomNavigation
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };

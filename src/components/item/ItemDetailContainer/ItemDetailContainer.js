@@ -23,17 +23,23 @@ const ItemDetailContainer = () => {
 
     useEffect( () => {
 
+        // Obtenemos los elements
         const e_loader = document.getElementById("loaderDetail")
         const e_gridContainer = document.getElementById("gridContainerDetail")
         const e_error = document.getElementById("error")
 
+        // Modificamos las clases para mostrar el loader y esconder el grid o el error
         e_loader.classList.remove("esconder")
         e_gridContainer.classList.add("esconder")
         e_error.classList.add("esconder")
 
+        // Firestore
         const productosCollection = collection(db, 'productos')
+
+        // Obtenemos la referencia de la coleccion productos
         const ref = doc(productosCollection, idProducto)
 
+        // Promesa de Datos. En caso de ser exitosa se modifica el estado Item para asi luego mostrar la vista del producto. Despues escondemos el loader. En caso de fallar se muestra un mensaje de error. 
         getDoc(ref).then( 
             async (result) => {
                 if(result.data() != undefined){

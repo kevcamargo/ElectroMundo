@@ -36,8 +36,10 @@ const CartView = () => {
     const ventasCollection = collection(db, 'ventas')
     const productosCollection = collection(db, 'productos')
 
+    // Obtenemos la referencia de la coleccion usuarios con el id FaMaFUuuvaPms9Q2k6sA
     const ref_Usuarios = doc(usuariosCollection, "FaMaFUuuvaPms9Q2k6sA")
 
+    // Promesa datos. En base a la referencia si es exitosa, almacenamos los datos del usuario en el estado Comprador.
     getDoc(ref_Usuarios).then(
         async (result) => {
             const usuario = await result.data()
@@ -48,6 +50,7 @@ const CartView = () => {
         console.log(error)
     )
 
+    // Obtenemos un arreglo con los productos que se encuentra en el carrito actualmente
     const productosAdquiridos = valorCartContext.contenidoCart.map(
         (producto) => {
             return {
@@ -58,6 +61,7 @@ const CartView = () => {
             }
     })
 
+    // actualizarStock - Actualizamos la base de datos en funcion a los cambios. El stock de los productos sera actualizado. 
     const actualizarStock = () => {
         const productos = valorCartContext.contenidoCart
 
@@ -66,11 +70,11 @@ const CartView = () => {
             updateDoc(ref_Productos, {
                 stock: productos[index].stock - productos[index].cantidad
             });
-            
         }
 
     }
     
+    // handlerFinalizarCompra - Luego de finalizar la compra se procede a generar una registro de la coleccion ventas. Despues se actualiza el stock, resetamos el carrito y luego cambiamos el estado CompraExitosa asi podemos mostrar un mensaje de compra exitosa
     const handlerFinalizarCompra = () => {
 
         addDoc(ventasCollection, {
@@ -85,6 +89,7 @@ const CartView = () => {
         valorCartContext.clear()
     }
 
+    // montoTotal - Devuelve el pmonto total de los precios de productos dentro del carrito
     const montoTotal = () => {
         let acumulador = 0
         if(valorCartContext.contenidoCart.length != 0){
@@ -100,6 +105,7 @@ const CartView = () => {
         setMonto(montoTotal())
     },[valorCartContext])
 
+    // Renderiza una pantalla con un mensaje cuando el carrito esta vacio
     const renderCarritoVacio = () => {
         return(
             <>  
@@ -112,7 +118,7 @@ const CartView = () => {
             </>
         )
     }
-
+    // Renderiza una pantalla con los productos del carrito
     const renderCarritoProductos = () => {    
         
         return(
@@ -204,7 +210,7 @@ const CartView = () => {
             </>
         )
     }
-    
+    // Renderiza una pantalla exito luego de la compra
     const renderCompraExitosa = () => {
         return(
             
