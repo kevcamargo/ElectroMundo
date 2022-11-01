@@ -151,3 +151,12 @@ Se lo utiliza para dar efecto de actualizacion en el nombre del usuario dentro d
 ### ItemDetailContainer
 :arrow_right: ItemDetail
 :arrow_right: :arrow_right: ItemCount
+
+----
+## Deploy
+Se realizo el deploy en Netlify
+Puede acceder a la app a traves de este link 
+https://inspiring-kitsune-6371af.netlify.app/
+
+
+
